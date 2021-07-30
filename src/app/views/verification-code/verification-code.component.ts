@@ -35,7 +35,9 @@ export class VerficationCodeComponent implements OnInit {
         console.log(data);
         this.router.navigate(["/"]);
       },
-      (err) => {}
+      (err) => {
+        console.log(JSON.stringify(err.message))
+      }
     );
   }
 }

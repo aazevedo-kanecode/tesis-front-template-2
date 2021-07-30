@@ -13,7 +13,7 @@ export class UserService {
   public headers = new HttpHeaders()
     .set("content-type", "application/json")
     .set('Accept', 'application/json')
-    .set('Origin','https://security-camera-app-1.herokuapp.com')
+    //.set('Origin','https://security-camera-app-1.herokuapp.com')
     //.set("Access-Control-Allow-Origin", "*");
 
   public headersAuthorization = new HttpHeaders()

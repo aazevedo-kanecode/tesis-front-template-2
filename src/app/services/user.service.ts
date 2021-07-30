@@ -43,7 +43,8 @@ export class UserService {
 
     console.log(JSON.stringify(json))
     console.log(json)
-
+    console.log(environment.url.concat("register"))
+    
     return this._http.post(environment.url.concat("register"), params, {
       headers: this.headers,
     });

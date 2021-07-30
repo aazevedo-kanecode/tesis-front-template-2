@@ -12,12 +12,14 @@ export class UserService {
 
   public headers = new HttpHeaders()
     .set("content-type", "application/json")
+    .set('Accept', 'application/json')
+    .set('Origin','https://security-camera-app-1.herokuapp.com')
     //.set("Access-Control-Allow-Origin", "*");
 
   public headersAuthorization = new HttpHeaders()
     .set("content-type", "application/json")
     .set("Authorization", this.getToken())
-    .set("Access-Control-Allow-Origin", "*");
+    //.set("Access-Control-Allow-Origin", "*");
 
   constructor(protected _http: HttpClient) {
     this.url = environment.url;

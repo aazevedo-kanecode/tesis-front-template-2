@@ -41,6 +41,9 @@ export class UserService {
     let json = JSON.stringify(user_to_register);
     let params = json;
 
+    console.log(JSON.stringify(json))
+    console.log(json)
+
     return this._http.post(environment.url.concat("register"), params, {
       headers: this.headers,
     });

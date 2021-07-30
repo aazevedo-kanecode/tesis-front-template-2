@@ -42,8 +42,7 @@ export class ProfilePageComponent implements OnInit {
 
   public setPhoto() {
     if (this.user.image && this.user.image != null) {
-      this.photo_default =
-        "http://localhost:8000/api/get-image-file/" + this.user.image;
+      this.photo_default = environment.url+"get-image-file/" + this.user.image;
     }
   }
 

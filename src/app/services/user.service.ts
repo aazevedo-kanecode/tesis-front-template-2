@@ -12,7 +12,7 @@ export class UserService {
 
   public headers = new HttpHeaders()
     .set("content-type", "application/json")
-    .set("Access-Control-Allow-Origin", "*");
+    //.set("Access-Control-Allow-Origin", "*");
 
   public headersAuthorization = new HttpHeaders()
     .set("content-type", "application/json")
@@ -44,7 +44,7 @@ export class UserService {
     console.log(JSON.stringify(json))
     console.log(json)
     console.log(environment.url.concat("register"))
-    
+
     return this._http.post(environment.url.concat("register"), params, {
       headers: this.headers,
     });
@@ -71,6 +71,7 @@ export class UserService {
   }
 
   public VerificationCode(payload, secret): Observable<any> {
+    console.log(environment.url.concat("verify"))
     return this._http.post(
       environment.url.concat("verify"),
       {

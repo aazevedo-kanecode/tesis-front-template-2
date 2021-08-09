@@ -11,6 +11,7 @@ import { RegisterComponent } from "./views/register/register.component";
 import { WebcamComponent } from "./webcam/webcam.component";
 import { VerficationCodeComponent } from "./views/verification-code/verification-code.component";
 import { YourCodeComponent } from "./views/verification-code/your-code.component";
+import { RoomComponent } from "./views/room/components/room/room.component";
 
 export const routes: Routes = [
   {
@@ -68,6 +69,11 @@ export const routes: Routes = [
     },
   },
   {
+    path: ':id',
+    component: RoomComponent,
+    pathMatch: "full",
+  },
+  {
     path: "",
     component: DefaultLayoutComponent,
     data: {
@@ -93,6 +99,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import("./views/camera/camera.module").then((m) => m.CameraModule),
       },
+      /*{
+        path: ":id",
+        loadChildren: () =>
+          import("./views/room/room.module").then((m) => m.RoomModule),
+      },*/
       {
         path: "base",
         loadChildren: () =>

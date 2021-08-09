@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {WebSocketService} from "../../services/web-socket.service";
 import {PeerService} from "../../services/peer.service";
+import {v4 as uuidv4} from 'uuid';
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-camera",
@@ -13,8 +15,12 @@ export class CameraComponent implements OnInit {
   currentStream: any;
   listUser: Array<any> = [];
 
-  constructor(private route: ActivatedRoute, private webSocketService: WebSocketService,
-              private peerService: PeerService) {
+  constructor(
+    private route: ActivatedRoute, 
+    private webSocketService: WebSocketService,
+    private peerService: PeerService,
+    private router: Router
+  ) {
     this.roomName = route.snapshot.paramMap.get('id');
   }
 
@@ -25,7 +31,9 @@ export class CameraComponent implements OnInit {
     this.initSocket();
   }
 
-  //multiples cuartos donde cada uno envia un video
+  goToRoom = () => {
+    this.router.navigate(['/', uuidv4()]);
+  }
 
   initPeer = () => {
     const {peer} = this.peerService;

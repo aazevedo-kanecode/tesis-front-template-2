@@ -22,7 +22,7 @@ export class ProfilePageComponent implements OnInit {
   constructor(private _userService: UserService, private router: Router) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.url = environment.url;
+    this.url = environment.URL;
   }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ProfilePageComponent implements OnInit {
 
   public setPhoto() {
     if (this.user.image && this.user.image != null) {
-      this.photo_default = environment.url+"get-image-file/" + this.user.image;
+      this.photo_default = environment.URL+"get-image-file/" + this.user.image;
     }
   }
 

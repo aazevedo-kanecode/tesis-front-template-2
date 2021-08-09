@@ -23,6 +23,14 @@ export const navItems: INavData[] = [
           text: "EN VIVO",
         },
       },
+      /*{
+        name: "cuartos broadcast - beta",
+        url: "/:id",
+        badge: {
+          variant: "warning",
+          text: "cuartos",
+        },
+      },*/
       {
         name: "Listado de cámara",
         url: "/camera/list-cameras",

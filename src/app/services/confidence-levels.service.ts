@@ -14,7 +14,7 @@ export class ConfidenceLevelsService {
     .set("Access-Control-Allow-Origin", "*");
 
   constructor(protected _http: HttpClient) {
-    this.url = environment.url;
+    this.url = environment.URL;
   }
 
   //Agregar Face
@@ -22,7 +22,7 @@ export class ConfidenceLevelsService {
     let json = JSON.stringify(confidenceLevels);
     let params = json;
 
-    return this._http.post(environment.url + "confidence-level", params, {
+    return this._http.post(environment.URL + "confidence-level", params, {
       headers: this.headersAuthorization,
     });
   }
@@ -33,7 +33,7 @@ export class ConfidenceLevelsService {
     let params = json;
 
     return this._http.put(
-      environment.url + "update-confidence-level/" + confidenceLevels._id,
+      environment.URL + "update-confidence-level/" + confidenceLevels._id,
       params,
       {
         headers: this.headersAuthorization,
@@ -43,7 +43,7 @@ export class ConfidenceLevelsService {
 
   //Obtener Nivel de confianza
   public getConfidenceLevels(): Observable<any> {
-    return this._http.get(environment.url + "confidence-levels", {
+    return this._http.get(environment.URL + "confidence-levels", {
       headers: this.headersAuthorization,
     });
   }

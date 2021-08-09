@@ -51,9 +51,15 @@ import { ChartsModule } from "ng2-charts";
 import { WebcamComponent } from "./webcam/webcam.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
+import { RoomModule } from "./views/room/room.module";
 
-
-const config: SocketIoConfig ={ url: environment.shortURL +'/socket.io/?EIO=3&transport=polling'};
+const config: SocketIoConfig ={ 
+  //url: environment.SHORT_URL +'/socket.io/?EIO=3&transport=polling'
+  url: environment.SHORT_URL,
+  options:{
+    transports: ['websocket']
+  }
+};
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -81,7 +87,8 @@ const APP_CONTAINERS = [DefaultLayoutComponent];
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    RoomModule
   ],
   declarations: [
     AppComponent,

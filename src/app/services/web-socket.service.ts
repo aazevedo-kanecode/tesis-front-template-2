@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable,Output} from '@angular/core';
 import {Socket} from 'ngx-socket-io';
 
 @Injectable({
@@ -6,6 +6,7 @@ import {Socket} from 'ngx-socket-io';
 })
 export class WebSocketService {
   events = ['new-user', 'bye-user'];
+  @Output()
   cbEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private Socket: Socket) {
@@ -13,8 +14,9 @@ export class WebSocketService {
   }
 
   listener = () => {
-    this.events.forEach(evenName => {
-      this.Socket.on(evenName, data => this.cbEvent.emit({
+    this.events.forEach(evenName => {      
+      this.Socket.on('new-user', data => 
+      this.cbEvent.emit({
         name: evenName,
         data
       }));

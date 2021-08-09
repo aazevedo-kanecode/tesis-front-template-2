@@ -9,12 +9,16 @@ export class UserService {
   public url: string;
   public identity;
   public token;
-
+  private options = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  } 
   public headers = new HttpHeaders()
     .set("content-type", "application/json")
     .set('Accept', 'application/json')
+    //.set('access-control-allow-origin',environment.FRONT_END_URL);
     //.set('Origin','https://security-camera-app-1.herokuapp.com')
-    .set("Access-Control-Allow-Origin", "*");
+    //.set("Access-Control-Allow-Origin", "*");
 
   public headersAuthorization = new HttpHeaders()
     .set("content-type", "application/json")
@@ -22,7 +26,8 @@ export class UserService {
     .set("Access-Control-Allow-Origin", "*");
 
   constructor(protected _http: HttpClient) {
-    this.url = environment.url;
+    this.url = environment.URL;
+    
   }
 
   //Usuario entra al sistema
@@ -33,7 +38,7 @@ export class UserService {
     let json = JSON.stringify(user_to_login);
     let params = json;
 
-    return this._http.post(environment.url.concat("login"), params, {
+    return this._http.post(environment.URL.concat("login"), params, {
       headers: this.headers,
     });
   }
@@ -45,9 +50,9 @@ export class UserService {
 
     console.log(JSON.stringify(json))
     console.log(json)
-    console.log(environment.url.concat("register"))
+    console.log(environment.URL.concat("register"))
 
-    return this._http.post(environment.url.concat("register"), params, {
+    return this._http.post(environment.URL.concat("register"), params, {
       headers: this.headers,
     });
   }
@@ -58,7 +63,7 @@ export class UserService {
     let params = json;
 
     return this._http.put(
-      environment.url + "update-user/" + user_to_updated._id,
+      environment.URL + "update-user/" + user_to_updated._id,
       params,
       {
         headers: this.headersAuthorization,
@@ -67,21 +72,21 @@ export class UserService {
   }
 
   public getUser(idUser): Observable<any> {
-    return this._http.get(environment.url + "get-user/" + idUser, {
+    console.log(this.headersAuthorization)
+    return this._http.get(environment.URL + "get-user/" + idUser, {
       headers: this.headersAuthorization,
     });
   }
 
   public VerificationCode(payload, secret): Observable<any> {
-    console.log(environment.url.concat("verify"))
     return this._http.post(
-      environment.url.concat("verify"),
+      environment.URL.concat("verify"),
       {
         secret: secret,
-        token_secret: payload.temp_secret,
+        token_secret: payload.temp_secreto,
       },
       {
-        headers: this.headers,
+        headers:this.options
       }
     );
   }

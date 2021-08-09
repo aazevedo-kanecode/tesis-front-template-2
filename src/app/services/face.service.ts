@@ -15,7 +15,7 @@ export class FaceService {
     .set("Access-Control-Allow-Origin", "*");
 
   constructor(protected _http: HttpClient) {
-    this.url = environment.url;
+    this.url = environment.URL;
   }
 
   //Agregar Face
@@ -23,7 +23,7 @@ export class FaceService {
     let json = JSON.stringify(face);
     let params = json;
 
-    return this._http.post(environment.url + "save-face", params, {
+    return this._http.post(environment.URL + "save-face", params, {
       headers: this.headersAuthorization,
     });
   }
@@ -33,7 +33,7 @@ export class FaceService {
     let json = JSON.stringify(face);
     let params = json;
 
-    return this._http.put(environment.url + "update-face/" + face._id, params, {
+    return this._http.put(environment.URL + "update-face/" + face._id, params, {
       headers: this.headersAuthorization,
     });
   }
@@ -42,14 +42,14 @@ export class FaceService {
   removeFace(faceId): Observable<any> {
     let json = JSON.stringify(faceId);
 
-    return this._http.delete(environment.url + "face/" + faceId, {
+    return this._http.delete(environment.URL + "face/" + faceId, {
       headers: this.headersAuthorization,
     });
   }
 
   //Obtener Face
   public getFaceByUser(idFace): Observable<any> {
-    return this._http.get(environment.url + "face-by-user/" + idFace, {
+    return this._http.get(environment.URL + "face-by-user/" + idFace, {
       headers: this.headersAuthorization,
     });
   }

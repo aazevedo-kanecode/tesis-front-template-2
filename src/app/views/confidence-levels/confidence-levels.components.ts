@@ -37,7 +37,7 @@ export class ConfidenceLevelsComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.face = new Face("", "", "", "", "", "", "", "");
-    this.url = environment.url;
+    this.url = environment.URL;
   }
 
   ngOnInit() {

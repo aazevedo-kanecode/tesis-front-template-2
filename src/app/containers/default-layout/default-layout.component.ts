@@ -68,7 +68,7 @@ export class DefaultLayoutComponent implements OnInit {
   public setPhoto() {
     if (this.user.image && this.user.image != null) {
       this.photo_default =
-        environment.url+"/get-image-file/" + this.user.image;
+        environment.URL+"/get-image-file/" + this.user.image;
     }
   }
 
